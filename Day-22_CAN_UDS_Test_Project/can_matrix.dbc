@@ -1,0 +1,19 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ECU Tester
+
+BO_ 512 EngineStatus: 8 ECU
+ SG_ EngineRPM    :  0|16@1+ (0.25,0)      [0|16383.75]  "rpm"   Tester
+ SG_ CoolantTemp  : 16|8@1+  (1,-40)        [-40|215]     "degC"  Tester
+ SG_ EngineLoad   : 24|8@1+  (0.39216,0)   [0|100]       "%"     Tester
+ SG_ ThrottlePos  : 32|8@1+  (0.39216,0)   [0|100]       "%"     Tester
+ SG_ VehicleSpeed : 40|8@1+  (1,0)          [0|255]       "km/h"  Tester
+
+BO_ 2016 UDS_Request: 8 Tester
+
+BO_ 2024 UDS_Response: 8 ECU
+

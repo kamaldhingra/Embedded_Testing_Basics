@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CAN/UDS Test Automation — Test Report</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:40px;background:#f4f4f4}
+    h1{color:#2c3e50;margin-bottom:4px}
+    .meta{color:#888;font-size:12px;margin-bottom:24px}
+    .cards{display:flex;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+    .card{background:#fff;padding:18px 24px;border-radius:8px;
+           box-shadow:0 2px 6px rgba(0,0,0,.1);min-width:100px;text-align:center}
+    .label{font-size:11px;color:#777;text-transform:uppercase;letter-spacing:.5px}
+    .val{font-size:30px;font-weight:700;margin-top:4px}
+    .green{color:#27ae60} .red{color:#e74c3c} .grey{color:#555}
+    table{border-collapse:collapse;width:100%;background:#fff;
+           border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    th{background:#2c3e50;color:#fff;padding:11px 14px;text-align:left;font-size:13px}
+    td{padding:9px 14px;border-bottom:1px solid #eee;font-size:13px}
+  </style>
+</head>
+<body>
+  <h1>🚗 CAN/UDS Test Automation</h1>
+  <p class="meta">Run ID: 20260622_165810 &nbsp;|&nbsp;
+     2026-06-22 16:58:10 &nbsp;|&nbsp;
+     Framework v1.0.0</p>
+  <div class="cards">
+    <div class="card"><div class="label">Total</div>
+      <div class="val grey">20</div></div>
+    <div class="card"><div class="label">Passed</div>
+      <div class="val green">12</div></div>
+    <div class="card"><div class="label">Failed</div>
+      <div class="val red">8</div></div>
+    <div class="card"><div class="label">Pass Rate</div>
+      <div class="val red">60%</div></div>
+    <div class="card"><div class="label">Duration</div>
+      <div class="val grey">0.2 s</div></div>
+  </div>
+  <table>
+    <thead><tr>
+      <th>TC ID</th><th>Group</th><th>Title</th>
+      <th>Status</th><th>Duration</th><th>Timestamp</th><th>Detail</th>
+    </tr></thead>
+    <tbody><tr style='background:#d4edda'><td>TC01</td><td>CAN Infrastructure</td><td>DBC parsed: EngineStatus has correct ID/DLC/signals</td><td><b>✅ PASS</b></td><td>0.0 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC02</td><td>CAN Infrastructure</td><td>Signal encoding: RPM=3000 → bytes [E0 2E ...] correct</td><td><b>✅ PASS</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC03</td><td>CAN Infrastructure</td><td>Signal decoding: raw bytes → RPM=3000, Temp=90°C, Speed=80</td><td><b>✅ PASS</b></td><td>0.0 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#f8d7da'><td>TC04</td><td>CAN Infrastructure</td><td>Round-trip: set ECU values → broadcast → capture → decode → verify</td><td><b>❌ FAIL</b></td><td>45.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Round-trip RPM: expected ~4000, got 3000.0</td></tr><tr style='background:#f8d7da'><td>TC05</td><td>Timing</td><td>EngineStatus cycle time: mean in [5, 20] ms</td><td><b>❌ FAIL</b></td><td>36.3 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Cycle time 4.0 ms outside [5, 20] ms window</td></tr><tr style='background:#d4edda'><td>TC06</td><td>Timing</td><td>UDS P2 response time < 50.0 ms</td><td><b>✅ PASS</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC07</td><td>Timing</td><td>Extended session P2=25ms, P2*=5000ms timing bytes</td><td><b>✅ PASS</b></td><td>0.2 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#f8d7da'><td>TC08</td><td>ECU Health</td><td>TesterPresent acknowledged (ECU reachable)</td><td><b>❌ FAIL</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Expected 0x7E, got 0x50</td></tr><tr style='background:#f8d7da'><td>TC09</td><td>ECU Health</td><td>ECUReset returns to defaultSession (0x01)</td><td><b>❌ FAIL</b></td><td>0.2 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Expected 0x51, got 0x50</td></tr><tr style='background:#f8d7da'><td>TC10</td><td>Session Control</td><td>programmingSession (0x10 0x02) → positive response 0x50 0x02</td><td><b>❌ FAIL</b></td><td>0.2 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>SubFunction echo: expected 0x02, got 0x01</td></tr><tr style='background:#f8d7da'><td>TC11</td><td>Session Control</td><td>SecurityAccess in defaultSession → NRC 0x22 (conditionsNotCorrect)</td><td><b>❌ FAIL</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Expected NRC 0x7F, got 0x50 (service was not rejected)</td></tr><tr style='background:#f8d7da'><td>TC12</td><td>ReadDID</td><td>DID 0xF189 SW version returns printable ASCII</td><td><b>❌ FAIL</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>Expected 0x62, got 0x7F</td></tr><tr style='background:#f8d7da'><td>TC13</td><td>ReadDID</td><td>DID 0xF405 CoolantTemp returns 25.0°C</td><td><b>❌ FAIL</b></td><td>29.2 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>CoolantTemp: expected 25.0°C, got 1750.5°C</td></tr><tr style='background:#d4edda'><td>TC14</td><td>Negative Responses</td><td>Unknown DID 0xAABB → NRC 0x31 (requestOutOfRange)</td><td><b>✅ PASS</b></td><td>5.7 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC15</td><td>Negative Responses</td><td>Malformed ReadDID (1-byte DID) → NRC 0x13 (incorrectMessageLength)</td><td><b>✅ PASS</b></td><td>0.1 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC16</td><td>DTC Lifecycle</td><td>Inject over-temp fault → DTC P0217 confirmed (0xAF)</td><td><b>✅ PASS</b></td><td>24.6 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC17</td><td>DTC Lifecycle</td><td>ClearDTC at safe temp → DTC P0217 absent</td><td><b>✅ PASS</b></td><td>25.3 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC18</td><td>Security Access</td><td>Full Seed/Key unlock in extendedDiagSession</td><td><b>✅ PASS</b></td><td>0.4 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC19</td><td>Reports</td><td>JSON report: file created, valid JSON, all required fields</td><td><b>✅ PASS</b></td><td>0.6 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr><tr style='background:#d4edda'><td>TC20</td><td>Reports</td><td>HTML report: file created, contains TC01–TC18 results</td><td><b>✅ PASS</b></td><td>0.2 ms</td><td>2026-06-22T16:58:10</td><td style='font-size:12px;color:#555'>—</td></tr></tbody>
+  </table>
+</body>
+</html>

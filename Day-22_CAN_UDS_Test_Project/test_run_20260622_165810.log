@@ -1,0 +1,114 @@
+2026-06-22 16:58:10.374  [INFO   ]  Framework started: project='CAN/UDS Test Automation'  run_id=20260622_165810
+2026-06-22 16:58:10.374  [INFO   ]  DBC loaded: 3 messages  (5 signals)
+2026-06-22 16:58:10.374  [INFO   ]  START  TC01  DBC parsed: EngineStatus has correct ID/DLC/signals
+2026-06-22 16:58:10.374  [DEBUG  ]  EngineStatus: ID=0x200  DLC=8  signals=['EngineRPM', 'CoolantTemp', 'EngineLoad', 'ThrottlePos', 'VehicleSpeed']
+2026-06-22 16:58:10.374  [INFO   ]  END    TC01  PASS  (0.0 ms)
+2026-06-22 16:58:10.374  [INFO   ]  START  TC02  Signal encoding: RPM=3000 → bytes [E0 2E ...] correct
+2026-06-22 16:58:10.374  [DEBUG  ]  Encoded: E02E82BF40500000
+2026-06-22 16:58:10.374  [INFO   ]  END    TC02  PASS  (0.1 ms)
+2026-06-22 16:58:10.374  [INFO   ]  START  TC03  Signal decoding: raw bytes → RPM=3000, Temp=90°C, Speed=80
+2026-06-22 16:58:10.374  [DEBUG  ]  Decoded: {'EngineRPM': 3000.0, 'CoolantTemp': 90.0, 'EngineLoad': 74.90256000000001, 'ThrottlePos': 25.09824, 'VehicleSpeed': 80.0}
+2026-06-22 16:58:10.374  [INFO   ]  END    TC03  PASS  (0.0 ms)
+2026-06-22 16:58:10.374  [INFO   ]  START  TC04  Round-trip: set ECU values → broadcast → capture → decode → verify
+2026-06-22 16:58:10.420  [WARNING]  FAIL   TC04: Round-trip RPM: expected ~4000, got 3000.0
+2026-06-22 16:58:10.420  [INFO   ]  END    TC04  FAIL  (45.1 ms)
+2026-06-22 16:58:10.420  [INFO   ]  START  TC05  EngineStatus cycle time: mean in [5, 20] ms
+2026-06-22 16:58:10.456  [DEBUG  ]  CycleTimes arb_id=0x200: n=9 mean=4.0ms min=0.0ms max=12.6ms
+2026-06-22 16:58:10.456  [WARNING]  FAIL   TC05: Cycle time 4.0 ms outside [5, 20] ms window
+2026-06-22 16:58:10.456  [INFO   ]  END    TC05  FAIL  (36.3 ms)
+2026-06-22 16:58:10.456  [INFO   ]  START  TC06  UDS P2 response time < 50.0 ms
+2026-06-22 16:58:10.456  [DEBUG  ]  UDS response latency: 0.05 ms
+2026-06-22 16:58:10.456  [INFO   ]  P2 response latency: 0.05 ms  (limit=50.0 ms)
+2026-06-22 16:58:10.456  [INFO   ]  END    TC06  PASS  (0.1 ms)
+2026-06-22 16:58:10.456  [INFO   ]  START  TC07  Extended session P2=25ms, P2*=5000ms timing bytes
+2026-06-22 16:58:10.456  [DEBUG  ]  UDS TX  [10 01]
+2026-06-22 16:58:10.456  [DEBUG  ]  UDS RX  [62 F1 86 01]
+2026-06-22 16:58:10.456  [DEBUG  ]  UDS TX  [10 03]
+2026-06-22 16:58:10.456  [DEBUG  ]  UDS RX  [50 01 00 19 01 F4]
+2026-06-22 16:58:10.456  [INFO   ]  Session timing: P2=25 ms  P2*=5000 ms
+2026-06-22 16:58:10.457  [INFO   ]  END    TC07  PASS  (0.2 ms)
+2026-06-22 16:58:10.457  [INFO   ]  START  TC08  TesterPresent acknowledged (ECU reachable)
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [3E 00]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [50 03 00 19 01 F4]
+2026-06-22 16:58:10.457  [WARNING]  FAIL   TC08: Expected 0x7E, got 0x50
+2026-06-22 16:58:10.457  [INFO   ]  END    TC08  FAIL  (0.1 ms)
+2026-06-22 16:58:10.457  [INFO   ]  START  TC09  ECUReset returns to defaultSession (0x01)
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [10 03]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [7E 00]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [11 01]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [50 03 00 19 01 F4]
+2026-06-22 16:58:10.457  [WARNING]  FAIL   TC09: Expected 0x51, got 0x50
+2026-06-22 16:58:10.457  [INFO   ]  END    TC09  FAIL  (0.2 ms)
+2026-06-22 16:58:10.457  [INFO   ]  START  TC10  programmingSession (0x10 0x02) → positive response 0x50 0x02
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [10 01]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [51 01]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [10 02]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [50 01 00 19 01 F4]
+2026-06-22 16:58:10.457  [WARNING]  FAIL   TC10: SubFunction echo: expected 0x02, got 0x01
+2026-06-22 16:58:10.457  [INFO   ]  END    TC10  FAIL  (0.2 ms)
+2026-06-22 16:58:10.457  [INFO   ]  START  TC11  SecurityAccess in defaultSession → NRC 0x22 (conditionsNotCorrect)
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [10 01]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [50 02 00 19 01 F4]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [27 01]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [50 01 00 19 01 F4]
+2026-06-22 16:58:10.457  [WARNING]  FAIL   TC11: Expected NRC 0x7F, got 0x50 (service was not rejected)
+2026-06-22 16:58:10.457  [INFO   ]  END    TC11  FAIL  (0.1 ms)
+2026-06-22 16:58:10.457  [INFO   ]  START  TC12  DID 0xF189 SW version returns printable ASCII
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS TX  [22 F1 89]
+2026-06-22 16:58:10.457  [DEBUG  ]  UDS RX  [7F 27 22]
+2026-06-22 16:58:10.457  [WARNING]  FAIL   TC12: Expected 0x62, got 0x7F
+2026-06-22 16:58:10.458  [INFO   ]  END    TC12  FAIL  (0.1 ms)
+2026-06-22 16:58:10.458  [INFO   ]  START  TC13  DID 0xF405 CoolantTemp returns 25.0°C
+2026-06-22 16:58:10.480  [DEBUG  ]  UDS TX  [22 F4 05]
+2026-06-22 16:58:10.487  [DEBUG  ]  UDS RX  [multi-frame  17 bytes]
+2026-06-22 16:58:10.487  [WARNING]  FAIL   TC13: CoolantTemp: expected 25.0°C, got 1750.5°C
+2026-06-22 16:58:10.487  [INFO   ]  END    TC13  FAIL  (29.2 ms)
+2026-06-22 16:58:10.487  [INFO   ]  START  TC14  Unknown DID 0xAABB → NRC 0x31 (requestOutOfRange)
+2026-06-22 16:58:10.487  [DEBUG  ]  UDS TX  [22 AA BB]
+2026-06-22 16:58:10.493  [DEBUG  ]  UDS RX  [7F 22 31]
+2026-06-22 16:58:10.493  [INFO   ]  Unknown DID 0xAABB → NRC 0x31 ✓
+2026-06-22 16:58:10.493  [INFO   ]  END    TC14  PASS  (5.7 ms)
+2026-06-22 16:58:10.493  [INFO   ]  START  TC15  Malformed ReadDID (1-byte DID) → NRC 0x13 (incorrectMessageLength)
+2026-06-22 16:58:10.493  [DEBUG  ]  UDS TX  [22 F1]
+2026-06-22 16:58:10.493  [DEBUG  ]  UDS RX  [7F 22 13]
+2026-06-22 16:58:10.493  [INFO   ]  Short request [22 F1] → NRC 0x13 ✓
+2026-06-22 16:58:10.493  [INFO   ]  END    TC15  PASS  (0.1 ms)
+2026-06-22 16:58:10.493  [INFO   ]  START  TC16  Inject over-temp fault → DTC P0217 confirmed (0xAF)
+2026-06-22 16:58:10.493  [DEBUG  ]  UDS TX  [14 FF FF FF]
+2026-06-22 16:58:10.493  [DEBUG  ]  UDS RX  [54]
+2026-06-22 16:58:10.517  [DEBUG  ]  UDS TX  [3E 00]
+2026-06-22 16:58:10.517  [DEBUG  ]  UDS RX  [7E 00]
+2026-06-22 16:58:10.517  [DEBUG  ]  UDS TX  [19 02 FF]
+2026-06-22 16:58:10.518  [DEBUG  ]  UDS RX  [59 02 FF 02 17 AF]
+2026-06-22 16:58:10.518  [INFO   ]  DTC P0217 confirmed after temp=110°C injection ✓
+2026-06-22 16:58:10.518  [INFO   ]  END    TC16  PASS  (24.6 ms)
+2026-06-22 16:58:10.518  [INFO   ]  START  TC17  ClearDTC at safe temp → DTC P0217 absent
+2026-06-22 16:58:10.518  [DEBUG  ]  UDS TX  [14 FF FF FF]
+2026-06-22 16:58:10.518  [DEBUG  ]  UDS RX  [54]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [19 02 FF]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [59 02 FF]
+2026-06-22 16:58:10.543  [INFO   ]  DTC P0217 cleared successfully ✓
+2026-06-22 16:58:10.543  [INFO   ]  END    TC17  PASS  (25.3 ms)
+2026-06-22 16:58:10.543  [INFO   ]  START  TC18  Full Seed/Key unlock in extendedDiagSession
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [10 01]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [50 01 00 19 01 F4]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [10 03]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [50 03 00 19 01 F4]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [27 01]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [67 01 8B 11 51 1D]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [27 02 55 BC EF F2]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [67 02]
+2026-06-22 16:58:10.543  [INFO   ]  SecurityAccess unlocked: seed=0x8B11511D  key=0x55BCEFF2
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS TX  [10 01]
+2026-06-22 16:58:10.543  [DEBUG  ]  UDS RX  [50 01 00 19 01 F4]
+2026-06-22 16:58:10.543  [INFO   ]  END    TC18  PASS  (0.4 ms)
+2026-06-22 16:58:10.543  [INFO   ]  START  TC19  JSON report: file created, valid JSON, all required fields
+2026-06-22 16:58:10.544  [INFO   ]  JSON report written → test_report_20260622_165810.json
+2026-06-22 16:58:10.544  [INFO   ]  JSON report: test_report_20260622_165810.json  (18 TCs, 56% pass)
+2026-06-22 16:58:10.544  [INFO   ]  END    TC19  PASS  (0.6 ms)
+2026-06-22 16:58:10.544  [INFO   ]  START  TC20  HTML report: file created, contains TC01–TC18 results
+2026-06-22 16:58:10.544  [INFO   ]  HTML report written → test_report_20260622_165810.html
+2026-06-22 16:58:10.544  [INFO   ]  HTML report: test_report_20260622_165810.html  (6749 bytes)
+2026-06-22 16:58:10.544  [INFO   ]  END    TC20  PASS  (0.2 ms)
+2026-06-22 16:58:10.544  [INFO   ]  JSON report written → test_report_20260622_165810.json
+2026-06-22 16:58:10.545  [INFO   ]  HTML report written → test_report_20260622_165810.html

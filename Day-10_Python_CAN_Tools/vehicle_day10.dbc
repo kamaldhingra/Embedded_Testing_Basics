@@ -1,0 +1,31 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ECU_Engine ECU_Trans ECU_ABS
+
+BO_ 201 EngineData: 8 ECU_Engine
+ SG_ EngineRPM    : 0|16@1+ (1,0) [0|8000] "RPM"    Vector__XXX
+ SG_ CoolantTemp  : 16|8@1+ (0.5,-40) [-40|215] "degC" Vector__XXX
+ SG_ ThrottlePos  : 24|8@1+ (0.392157,0) [0|100] "%"   Vector__XXX
+ SG_ EngineLoad   : 32|8@1+ (0.392157,0) [0|100] "%"   Vector__XXX
+
+BO_ 300 TransData: 8 ECU_Trans
+ SG_ GearCurrent  : 0|4@1+ (1,0) [0|6] ""   Vector__XXX
+ SG_ GearTarget   : 4|4@1+ (1,0) [0|6] ""   Vector__XXX
+ SG_ VehicleSpeed : 8|16@1+ (0.01,0) [0|655] "km/h" Vector__XXX
+ SG_ AccelPedal   : 24|8@1+ (0.392157,0) [0|100] "%" Vector__XXX
+
+BO_ 400 WheelSpeed: 8 ECU_ABS
+ SG_ SpeedFL : 0|16@1+ (0.01,0) [0|655] "km/h" Vector__XXX
+ SG_ SpeedFR : 16|16@1+ (0.01,0) [0|655] "km/h" Vector__XXX
+ SG_ SpeedRL : 32|16@1+ (0.01,0) [0|655] "km/h" Vector__XXX
+ SG_ SpeedRR : 48|16@1+ (0.01,0) [0|655] "km/h" Vector__XXX
+
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 10000;
+BA_DEF_DEF_ "GenMsgCycleTime" 0;
+BA_ "GenMsgCycleTime" BO_ 201 10;
+BA_ "GenMsgCycleTime" BO_ 300 20;
+BA_ "GenMsgCycleTime" BO_ 400 10;
