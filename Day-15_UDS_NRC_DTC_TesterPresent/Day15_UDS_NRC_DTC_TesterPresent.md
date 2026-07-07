@@ -517,6 +517,7 @@ have degraded but the monitor isn't currently failing. Could be fixed.
 ---
 
 ## 🧠 Concept: Service 0x19 — ReadDTCInformation
+**Purpose:** Read stored diagnostic trouble codes and related information.
 
 Service 0x19 is the most **sub-function-rich** service in UDS — it has more than 20 sub-functions. The six you need to know for testing:
 
@@ -595,6 +596,8 @@ Not a sensor cold-start issue. Look at fuel system and injectors.
 ---
 
 ## 🧠 Concept: Service 0x14 — ClearDiagnosticInformation
+
+**Purpose:** Erase DTCs stored inside the ECU.
 
 ### Request Format
 
