@@ -372,6 +372,8 @@ class SessionKeepAlive(threading.Thread):
 
 ## 🧠 Concept: The DTC Lifecycle — From First Fault to Cleared
 
+A **Diagnostic Trouble Code (DTC)** is an error code stored inside an ECU whenever it detects a fault. Think of a DTC as the ECU's error log. Even if the fault disappears later, the ECU may keep the DTC in memory until it is cleared.
+
 Before reading DTC services, you need to understand **how a fault becomes a DTC and how it evolves**.
 
 ### The Four-Stage Journey
